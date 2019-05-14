@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	
+	<root>F:\eclipse-workspace\FtpServer\fileRoot</root>
+	
+	<user>
+		<name>asd</name>
+		<pwd>123</pwd>
+	</user>
+	<user>
+		<name>lyb</name>
+		<pwd>0328</pwd>
+	</user>
+
+</config>
