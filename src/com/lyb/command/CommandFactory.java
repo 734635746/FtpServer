@@ -18,12 +18,15 @@ public class CommandFactory {
 			
 			case "LIST" :return new DirCommand();
 			
-			case "RETR"  :return new GetCommand();
+			case "RETR" :return new GetCommand();
 			
 			case "PORT" :return new PortCommand();
 			
 			case "QUIT" :return new QuitCommand();
-
+			
+			case "CWD"  :return new CwdCommand();
+			
+			case "XPWD" :return new PwdCommand();
 			default:return null;
 
 		}
