@@ -12,7 +12,7 @@ import com.lyb.server.ClientDeal;
 public class PortCommand implements Command {
 
 	@Override
-	public void deal(Writer writer, String data, ClientDeal client){
+	public void deal(Writer writer, String data, ClientDeal client) throws IOException{
 		
 		String[] ipAndPort = data.split(",");
 		
@@ -43,14 +43,8 @@ public class PortCommand implements Command {
 		}
 
 		
-		try {
-			writer.write(message);
-			writer.flush();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		
+		writer.write(message);
+		writer.flush();	
 		
 	}
 

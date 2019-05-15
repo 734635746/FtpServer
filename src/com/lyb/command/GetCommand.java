@@ -1,12 +1,10 @@
 package com.lyb.command;
 
 import java.io.BufferedOutputStream;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -24,7 +22,7 @@ import com.lyb.util.CloseUtil;
 public class GetCommand implements Command {
 
 	@Override
-	public void deal(Writer writer, String data, ClientDeal client) {
+	public void deal(Writer writer, String data, ClientDeal client) throws IOException {
 		//下载文件的路径
 		String path = client.getCurrentPath()+File.separator+data;
 		
@@ -70,14 +68,9 @@ public class GetCommand implements Command {
 			}
 			
 		}else {
-			
-			try {
 				writer.write("220 文件不存在 .---------------\r\n ");
 				writer.flush();
-			} catch (IOException e) { 
-				e.printStackTrace();
-			}
-			
+					
 		}
 	}
 

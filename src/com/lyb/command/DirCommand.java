@@ -1,15 +1,11 @@
 package com.lyb.command;
 
-import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.net.InetAddress;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -28,7 +24,7 @@ import com.lyb.util.TimeUtil;
 public class DirCommand implements Command {
 
 	@Override
-	public void deal(Writer writer, String data, ClientDeal client) {
+	public void deal(Writer writer, String data, ClientDeal client)  throws IOException{
 		//文件目录路径
 		String path = client.getCurrentPath()+data;
 		
@@ -36,13 +32,10 @@ public class DirCommand implements Command {
 		
 		//检查文件或目录是否存在这种抽象路径名记
 		if(!file.exists()) {
-			try {
-				writer.write("213 文件目录不存在 .---------------\r\n");
-				writer.flush();
-				return ;
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			
+			writer.write("213 文件目录不存在 .---------------\r\n");
+			writer.flush();
+			return ;
 			
 		}else {
 			//文件列表信息

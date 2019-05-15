@@ -7,16 +7,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.Reader;
 import java.io.UnsupportedEncodingException;
-import java.io.Writer;
 import java.net.Socket;
 
 import com.lyb.command.Command;
 import com.lyb.command.CommandFactory;
 import com.lyb.command.PassCommand;
 import com.lyb.command.UserCommand;
-import com.lyb.constant.Constant;
 import com.lyb.global.Global;
 import com.lyb.util.CloseUtil;
 
@@ -41,7 +38,7 @@ public class ClientDeal implements Runnable{
 	//判断是否登陆
 	private volatile boolean isLogin = false;
 	
-	//当前文件路径
+	//当前服务器工作目录
 	private String currentPath = Global.rootPath;
 	
 	//客户端ip地址
@@ -186,7 +183,11 @@ public class ClientDeal implements Runnable{
                     				data = datas[1];
                     			}
                     			//调用命令处理类的处理方法
-                    			commandDeal.deal(writer, data, this);
+                    			try {
+									commandDeal.deal(writer, data, this);
+								} catch (IOException e) {
+									e.printStackTrace();
+								}
                     		}
                     		
                     	}else {//未登陆状态
