@@ -28,6 +28,10 @@ public class CommandFactory {
 			
 			case "XPWD" :return new PwdCommand();
 			
+			case "XMKD" :return new MkidrCommand();
+			
+			case "STOR" :return new StorCommand();
+			
 			default:return null;
 
 		}
