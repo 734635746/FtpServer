@@ -1,2 +1,3 @@
 #FtpServer
-FtpServer基于java的Ftp服务器
+基于java的Ftp服务器
+使用windows自带的ftp客户端
