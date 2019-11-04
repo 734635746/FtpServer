@@ -15,7 +15,7 @@ public class StringUtil {
 		String newPath = null;
 		//获得最后一个\的位置
 		int index = path.lastIndexOf("\\");
-		
+		//截取字符串路径
 		newPath = path.substring(0, index);
 	
 		return newPath;

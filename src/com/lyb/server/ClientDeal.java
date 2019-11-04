@@ -35,13 +35,13 @@ public class ClientDeal implements Runnable{
 	//当前连接对应的用户名
 	private String name = null;
 	
-	//判断是否登陆
+	//判断是否已经登陆
 	private volatile boolean isLogin = false;
 	
 	//当前服务器工作目录
 	private String currentPath = Global.rootPath;
 	
-	//客户端ip地址
+	//客户端的ip地址
 	private String ip = null;
 	
 	//客户端数据传输端口
@@ -107,9 +107,6 @@ public class ClientDeal implements Runnable{
 			//获取套接字的输入输出流
 			ips = socket.getInputStream();
 			ous = socket.getOutputStream();
-			ip = socket.getInetAddress().getHostAddress();
-			System.out.println(ip);
-			port = socket.getPort()+1;
 		} catch (IOException e) {
 			CloseUtil.close(ips);
 			CloseUtil.close(ous);
@@ -117,7 +114,9 @@ public class ClientDeal implements Runnable{
 		}
 	}
 	
-	//当用户调用quit命令是 调用此方法
+	/**
+	 * 当用户调用quit命令是时调用此方法进行连接清理工作
+	 */
 	public void clear() {
 		CloseUtil.close(reader);
 		CloseUtil.close(writer);
@@ -125,6 +124,7 @@ public class ClientDeal implements Runnable{
 		CloseUtil.close(ous);
 		CloseUtil.close(socket);
 	}
+	
 	
 	@Override
 	public void run() {
@@ -140,15 +140,16 @@ public class ClientDeal implements Runnable{
 			if(isFirstConn) {
 				try {
 					writer.write("220  连接ftp服务器成功 .---------------\r\n");
-					//writer.write("220 welcome my ftp server, Server ready.\r\n");
 					writer.flush();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+				//标志为已经访问过
 				isFirstConn = false;
 			}else {
 				
-				if(!socket.isClosed()) {//账号密码出错/quit命令则断开连接
+				if(!socket.isClosed()) {
+					//接收客户端的命令
 					String command = null;
 						try {
 							//阻塞地等待客户端命令

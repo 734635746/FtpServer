@@ -28,9 +28,15 @@ public class CommandFactory {
 			
 			case "XPWD" :return new PwdCommand();
 			
-			case "XMKD" :return new MkidrCommand();
+			case "XMKD" :return new MkdirCommand();
 			
 			case "STOR" :return new StorCommand();
+			
+			case "NLST" :return new LsCommand();
+			
+			case "XRMD" :return new RmdirCommand();
+			
+			case "DELE" :return new DeleCommand();
 			
 			default:return null;
 

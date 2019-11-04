@@ -50,7 +50,7 @@ public class DirCommand implements Command {
 					//临时目录文件
 					File tempFile = new File(path+File.separator+dirName);
 					String isDir = tempFile.isDirectory()?"d":"f";
-					String info = isDir+" rw-rw-rw- ftp  "+tempFile.length()+"B     "+TimeUtil.longToString_Time(tempFile.lastModified())+"    "+dirName+"\r\n";
+					String info = isDir+" rw-rw-rw- ftp ftp "+tempFile.length()+"B     "+TimeUtil.longToString_Time(tempFile.lastModified())+"    "+dirName+"\r\n";
 					fileListMsg.add(info);
 				}
 				fileListMsg.add("\r\n");
